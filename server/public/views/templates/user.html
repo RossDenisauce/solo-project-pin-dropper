@@ -2,5 +2,6 @@
 <div class="container">
 
     <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}!</h1>
+    <button class="btn btn-success" ng-click="vm.userService.easyMode()">Easy Mode</button>
     <button class="btn btn-default" ng-click="vm.userService.logout()">Log Out</button>
 </div>

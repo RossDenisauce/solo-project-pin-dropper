@@ -33,6 +33,15 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         }
       }
     })
+    .when('/easy-mode', {
+      templateUrl: '/views/templates/easy-mode.html',
+      controller: 'GameController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       template: '<h1>404</h1>'
     });
