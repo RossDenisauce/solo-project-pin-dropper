@@ -1,6 +1,6 @@
 const express = require('express');
 const encryptLib = require('../modules/encryption');
-const Person = require('../models/Person');
+const Person = require('../models/Person').Person;
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
