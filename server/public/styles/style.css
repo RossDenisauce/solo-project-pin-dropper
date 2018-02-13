@@ -81,7 +81,31 @@ li a:hover {
 }
 
 #pano {
-  height: 100%;
-  /* width: auto; */
+  height: 50%;
+  width: 100%;
+  position: absolute !important;
+}
+#map {
+  /* margin-top: 50%; */
+  height: 50%;
+  width: 100%;
   position: static !important;
+}
+
+#map #pano {
+  /* height: 50%;
+  width: 100%; */
+  z-index: -1 !important;
+  /* float: none; */
+}
+
+#submit {
+  /* position: absolute !important; */
+  z-index: 100000 !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

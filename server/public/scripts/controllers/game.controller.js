@@ -16,9 +16,20 @@ myApp.controller('GameController', ['$http', '$location', 'UserService', functio
         console.log(self.newLocation);
         
         self.panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'));
-    
+        self.panorama.setOptions({
+            addressControl: false,
+            showRoadLabels: false,
+            linksControl: false
+        });
         // Set the initial Street View camera to the center of the map
-        sv.getPanorama({location: self.newLocation, radius: 1000000}, self.processSVData);
+        sv.getPanorama({location: self.newLocation, preference: 'nearest', radius: 1000000}, self.processSVData);
+
+        self.map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 75, lng: 0},
+            zoom: 1,
+            streetViewControl: false
+          });
+    
     }
     self.createLocation = function(){
         self.landmassOne = Math.random() * 200 - 30;
@@ -30,14 +41,14 @@ myApp.controller('GameController', ['$http', '$location', 'UserService', functio
       
     self.processSVData = function(data, status) {
         if (status === 'OK') {
-            var marker = new google.maps.Marker({
-            position: data.location.latLng,
-            title: data.location.description
+            self.map.addListener('click', function(event){
+                var marker = new google.maps.Marker({map: self.map});
+                
             });
         
             self.panorama.setPano(data.location.pano);
             self.panorama.setPov({
-                heading: 270,
+                heading: 0,
                 pitch: 0
             });
             self.panorama.setVisible(true);
