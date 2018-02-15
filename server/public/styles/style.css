@@ -86,7 +86,9 @@ li a:hover {
   position: absolute !important;
 }
 #map {
-  /* margin-top: 50%; */
+  /* top: 350px;
+  left: 250px;
+  z-index: 99; */
   height: 50%;
   width: 100%;
   position: static !important;
@@ -99,13 +101,24 @@ li a:hover {
   /* float: none; */
 }
 
-#submit {
-  /* position: absolute !important; */
-  z-index: 100000 !important;
+button#submit {
+  position: absolute !important;
+  z-index: 1000000 !important;
+  margin-top: 625px !important;
+  margin-left: 50%;
+  padding: 10px 7px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  /* position: relative !important; */
+}
+
+#resultMap {
+  height: 75%;
+  width: 100%;
+  position: absolute !important;
+  margin-top: 5%;
 }

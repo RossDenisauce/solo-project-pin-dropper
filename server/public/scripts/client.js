@@ -42,6 +42,15 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         }
       }
     })
+    .when('/results', {
+      templateUrl: '/views/templates/results.html',
+      controller: 'ResultsController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       template: '<h1>404</h1>'
     });
