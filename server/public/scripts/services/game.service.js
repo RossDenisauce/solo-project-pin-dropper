@@ -62,6 +62,11 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
 
     self.initMap();
 
+    self.goHome = function(){
+        // self.initMap();
+        $location.path('/user');
+    }
+
     self.submitGuess = function(){
         self.newLocation.lat = self.panorama.getPosition().lat();
         self.newLocation.lng = self.panorama.getPosition().lng();

@@ -13,13 +13,13 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
         var latDif = Math.abs(GameService.guessPosition.lat - GameService.newLocation.lat);
         var lngDif = Math.abs(GameService.guessPosition.lng - GameService.newLocation.lng);
         if(latDif < 2 && lngDif < 2){
-            return 8;
-        } else if(latDif < 5 && lngDif < 5){
             return 7;
-        } else if(latDif < 10 && lngDif < 10){
+        } else if(latDif < 5 && lngDif < 5){
             return 6;
+        } else if(latDif < 10 && lngDif < 10){
+            return 5;
         } else if(latDif < 40 && lngDif < 40){
-            return 4;
+            return 3;
         } else if(latDif < 55 && lngDif < 55){
             return 3;
         } else{
@@ -46,8 +46,7 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
     }
 
     self.goHome = function(){
-        GameService.initMap();
-        $location.path('/user');
+        GameService.goHome();
     }
     
     self.initResultMap = function(){ 
@@ -55,7 +54,7 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
             center: {lat: self.midpoint.lat, lng: self.midpoint.lng},
             zoom: self.determineZoom(),
             streetViewControl: false
-          });
+        });
           
         
         self.actualMarker = new google.maps.Marker({position: {lat: GameService.newLocation.lat, lng:GameService.newLocation.lng}, map: self.resultMap});
