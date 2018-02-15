@@ -5,14 +5,8 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
     self.panorama;
     self.score;
 
-    self.landmassOne = Math.random() * 200 - 30;
-    self.landmassTwo = Math.random() * 160 - 10;
-    self.mapArea = [self.landmassOne, self.landmassTwo];
-    self.randomContinent = Math.floor(Math.random() * 1);
-
-    self.newLocation = {lat: Math.random() * 140 - 60, lng: self.mapArea[self.randomContinent]};
-
     self.initMap = function(){
+        self.createLocation();
         self.sv = new google.maps.StreetViewService();
         console.log(self.newLocation);
         
@@ -51,20 +45,13 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
                 pitch: 0
             });
             self.panorama.setVisible(true);
-            self.map.addListener('click', self.addLatLng);
+            self.map.addListener('click', self.addLatLng); //Adds click event to guess map
 
-    } else {
+    } else { // tries finding a new lat and lng
         console.error('Street View data not found for this location.');
         self.createLocation();
         self.initMap();
     }
-    }
-
-    self.initMap();
-
-    self.goHome = function(){
-        // self.initMap();
-        $location.path('/user');
     }
 
     self.submitGuess = function(){
@@ -85,18 +72,18 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
             lat: 0,
             lng: 0
         }
-        self.distance = 0;
+        self.distance = -1;
         self.score = 0;
     }
         $location.path('/results');
     }
 
     self.addLatLng = function(event){
-        if(!self.marker || !self.marker.setPosition){
+        if(!self.marker || !self.marker.setPosition){ //Adds a new marker only if there is not an existing one 
             self.marker = new google.maps.Marker({
                 position: event.latLng, map: self.map, opacity: 0.75
             });
-        } else {
+        } else { // Moves the current marker to where you click
             self.marker.setPosition(event.latLng);
         }
     }

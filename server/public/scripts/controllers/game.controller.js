@@ -7,5 +7,7 @@ myApp.controller('GameController', ['$http', '$location', 'GameService', functio
     self.submitGuess = function(){
         GameService.submitGuess();
     }
+    delete GameService.marker;
+    GameService.initMap();
 
 }]);

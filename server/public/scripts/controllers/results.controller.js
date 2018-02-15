@@ -36,17 +36,21 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
             self.score = Math.round(5000 * (Math.exp(-Math.pow(km, 2)/(2*580000))));
         }
     }
-        if(!self.distance == 0){
-        self.midpoint = {
-            lat: self.findMidpoint(GameService.guessPosition.lat, GameService.newLocation.lat),
-            lng: self.findMidpoint(GameService.guessPosition.lng, GameService.newLocation.lng)
-        };
+        if(self.distance > -1){
+            self.midpoint = {
+                lat: self.findMidpoint(GameService.guessPosition.lat, GameService.newLocation.lat),
+                lng: self.findMidpoint(GameService.guessPosition.lng, GameService.newLocation.lng)
+            };
     } else {
         self.midpoint = GameService.newLocation;
     }
 
     self.goHome = function(){
-        GameService.goHome();
+        $location.path('/user');
+    }
+
+    self.playAnother = function(){
+        $location.path('/easy-mode');
     }
     
     self.initResultMap = function(){ 
@@ -58,7 +62,7 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
           
         
         self.actualMarker = new google.maps.Marker({position: {lat: GameService.newLocation.lat, lng:GameService.newLocation.lng}, map: self.resultMap});
-        if(self.distance !== 0){
+        if(self.distance !== -1){
             self.guessMarker = new google.maps.Marker({position: {lat: GameService.guessPosition.lat, lng:GameService.guessPosition.lng}, map: self.resultMap});
 
             var line = new google.maps.Polyline({
