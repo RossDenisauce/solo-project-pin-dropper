@@ -17,7 +17,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #333333c2;
   color: #DDDDDD;
   padding: 10px;
 }
@@ -55,7 +55,7 @@ body, html {
 }
 
 .navbar {
-  background-color: #333333;
+  background-color: #333333c2;
   width: 100%;
   border-radius: 0px;
 }
@@ -83,6 +83,12 @@ li a {
 li a:hover {
   text-decoration: underline;
   color: #eee;
+  cursor: pointer;
+}
+
+.navbar > .container {
+  display: flex;
+  justify-content: space-between;
 }
 
 #pano {
@@ -107,10 +113,11 @@ li a:hover {
 }
 
 button#submit {
-  position: absolute !important;
+  position: fixed !important;
   z-index: 1000000 !important;
-  margin-top: 625px !important;
+  bottom: 25px;
   margin-left: 50%;
+  align-content: center;
   padding: 10px 15px;
   background-color: #0c7c0c;
   color: #FFFFFF;
@@ -142,9 +149,12 @@ button#submit:hover {
 
 .infoTable {
   color: white;
-  background-color: #585757;
+  background-color: #353535bd;
   text-align: center;
   margin: auto;
+  border-top: #0c7c0c;
+  border-collapse: collapse; 
+  margin-bottom: 75px;
 }
 
 #username {
@@ -154,12 +164,13 @@ button#submit:hover {
 }
 
 .infoTable > tbody > tr > th{
-  padding: 7px;
+  padding: 7px 14px;
   text-align: center;
   background-color: #0c7c0c;
+  border-color: #0c7c0c; 
 }
 .infoTable > tbody > tr > td{
-  padding: 7px;
+  padding: 7px 14px;
   text-align: center;
 }
 
@@ -197,18 +208,87 @@ div.loginButtons {
 
 .loginButton {
   padding: 7px 10px;
-  background-color: #1e99af;
+  background-color: rgb(3, 176, 199);
   color: #FFFFFF;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   font-size: 15px;
   border-radius: 10px;
+  border-color: rgb(3, 176, 199);
 }
 
 .loginButton:hover {
   cursor: pointer;
+  background-color: #0095af;
+  border-color: #0095af;
 }
 
 .registerLink {
   color: rgb(33, 206, 90);
   text-decoration: none;
+}
+
+#welcome {
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.userViewContainer {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.easyModeButton {
+  padding: 7px 10px;
+  background-color: #e7890f;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 25px;
+  border-radius: 10px;
+  border-color: #e7890f;
+}
+.easyModeButton:hover {
+  cursor: pointer;
+  background-color: #c0730e;
+  border-color: #c0730e;
+}
+
+.easyModeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+#homeButton {
+  padding: 7px 10px;
+  background-color: rgb(3, 176, 199);
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 17px;
+  border-radius: 10px;
+  border-color: rgb(3, 176, 199);
+}
+
+#homeButton:hover {
+  cursor: pointer;
+  background-color: #0095af;
+  border-color: #0095af;
+}
+
+#playAnotherButton {
+  margin-left: 15px;
+  padding: 7px 10px;
+  background-color: #e7890f;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 17px;
+  border-radius: 10px;
+  border-color: #e7890f;
+}
+
+#playAnotherButton:hover {
+  cursor: pointer;
+  background-color: #c0730e;
+  border-color: #c0730e;
 }

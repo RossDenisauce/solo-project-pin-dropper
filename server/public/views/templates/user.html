@@ -1,8 +1,6 @@
 <header ng-include="'../views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
-
+<div class="userViewContainer">
     <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}!</h1>
-    <button class="btn btn-success" ng-click="vm.userService.easyMode()">Base Mode</button>
-    <button class="btn btn-default" ng-click="vm.userService.logout()">Log Out</button>
+    <button class="easyModeButton" ng-click="vm.userService.easyMode()">Base Mode</button>
 </div>

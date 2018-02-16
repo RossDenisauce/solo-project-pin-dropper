@@ -3,20 +3,20 @@
         {{vm.distance}} {{vm.score}}
     </div>
     <div id="resultMap"></div>
-    <button id="homeButton" ng-click="vm.goHome()">Home</button>
-    <button id="playAnotherButton" ng-click="vm.playAnother()">Play Another</button>
+    <div class="easyModeContainer">
+        <button id="homeButton" ng-click="vm.goHome()">Home</button>
+        <button id="playAnotherButton" ng-click="vm.playAnother()">Play Another</button>
+    </div>
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
-    
+  <div class="modal-content"> 
     <span class="close">&times;</span>
+    <header class="modal-header">
+        <h2>Heyyo</h2>
+    </header>
     <p>Distance away: {{vm.distance}}</p> 
     <p>Score out of 5000: {{vm.score}}</p>
-    <footer class="modal-footer">
-        <h2>Heyyo</h2>
-    </footer>
   </div>
-
 </div>
 </div>

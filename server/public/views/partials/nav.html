@@ -1,8 +1,11 @@
 <div class="navbar">
   <div class="container">
-    <ul>
+    <ul class="userOptions">
       <li><a href="#!user">User Home</a></li>
-      <li><a href="#!info">Info Page</a></li>
+      <li><a href="#!info">User Data</a></li>
+    </ul>
+    <ul class="logoutSection">
+      <li><a class="logoutButton" ng-click="vm.userService.logout()">Log Out</a></li>
     </ul>
   </div>
 </div>

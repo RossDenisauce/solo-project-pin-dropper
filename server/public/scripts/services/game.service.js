@@ -26,12 +26,12 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
 
         //   self.marker = new google.maps.Marker({position: {lat:0, lng:0}, map: self.map, draggable: true, opacity: 0.75});
     
-          self.sv.getPanorama({location: self.newLocation, preference: 'nearest', radius: 1000000}, self.processSVData);
+          self.sv.getPanorama({location: self.newLocation, preference: 'nearest', source: 'outdoor', radius: 1000000}, self.processSVData);
     }
     self.createLocation = function(){
         self.landmassOne = Math.random() * 200 - 30;
-        self.landmassTwo = Math.random() * 160 - 10;
-        self.randomContinent = Math.floor(Math.random());
+        self.landmassTwo = Math.random() * -150 - 10;
+        self.randomContinent = Math.round(Math.random());
         self.mapArea = [self.landmassOne, self.landmassTwo];
         self.newLocation = {lat: Math.random() * 140 - 60, lng: self.mapArea[self.randomContinent]};
       }
