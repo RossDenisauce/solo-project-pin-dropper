@@ -11,7 +11,7 @@ const db = require('./modules/db.config.js');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const easyModeRouter = require('./routes/easy-mode.router');
+const gameRouter = require('./routes/game.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -26,7 +26,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/easy-mode', easyModeRouter);
+app.use('/api/easy-mode', gameRouter);
 
 // Serve static files
 app.use(express.static('server/public'));

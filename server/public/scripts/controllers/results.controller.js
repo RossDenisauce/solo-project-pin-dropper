@@ -1,9 +1,10 @@
-myApp.controller('ResultsController', ['$http', '$location', 'GameService', function($http, $location, GameService) {
+myApp.controller('ResultsController', ['$http', '$location', 'GameService', 'UserService', function($http, $location, GameService, UserService) {
     console.log('ResultsController created');
     var self = this;
 
     self.distance = GameService.distance;
     self.score = GameService.score;
+
 
     self.findMidpoint = function(x, y){
         return (x + y) / 2;
@@ -19,7 +20,7 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
         } else if(latDif < 10 && lngDif < 10){
             return 5;
         } else if(latDif < 40 && lngDif < 40){
-            return 3;
+            return 4;
         } else if(latDif < 55 && lngDif < 55){
             return 3;
         } else{
@@ -30,7 +31,7 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
     self.calculateScore = function(km){
         if(km > 750){
             self.score = Math.round(4500 * (Math.exp(-Math.pow(km, 2)/(2*200000))) + 2000 * (Math.exp(-Math.pow(km, 2)/(2*20000000))));
-        } else if(km == 0){
+        } else if(km == -1){
             self.score = 0;
         } else{
             self.score = Math.round(5000 * (Math.exp(-Math.pow(km, 2)/(2*580000))));
@@ -52,6 +53,25 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
     self.playAnother = function(){
         $location.path('/easy-mode');
     }
+
+    self.postResults = function(distance, score){
+        
+        var miles = distance * 0.621371;
+
+        scoreObject = {
+            distance: distance,
+            miles: miles.toFixed(2),
+            score: score
+        };
+
+        $http.post(`/api/easy-mode/${UserService.userObject.id}`, scoreObject)
+            .then(function(response) {
+                console.log('Successful post', response);
+            })
+            .catch(function(error) {
+                console.log('Error on Post', error);
+            });
+    }
     
     self.initResultMap = function(){ 
         self.resultMap = new google.maps.Map(document.getElementById('resultMap'), {
@@ -60,7 +80,6 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
             streetViewControl: false
         });
           
-        
         self.actualMarker = new google.maps.Marker({position: {lat: GameService.newLocation.lat, lng:GameService.newLocation.lng}, map: self.resultMap});
         if(self.distance !== -1){
             self.guessMarker = new google.maps.Marker({position: {lat: GameService.guessPosition.lat, lng:GameService.guessPosition.lng}, map: self.resultMap});
@@ -73,9 +92,27 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', func
                     map: self.resultMap
             });
     }
-        self.calculateScore(self.distance);
+    self.calculateScore(self.distance);
     }
 
     self.initResultMap();
-    console.log(self.midpoint);
+
+self.initModal = function(){
+        // Get the modal
+    self.modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    self.span = document.getElementsByClassName("close")[0];
+
+    //Open the modal 
+    self.modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    self.span.onclick = function() {
+        self.postResults(self.distance, self.score);
+        self.modal.style.display = "none";
+    }
+}
+self.initModal();
+
 }]);

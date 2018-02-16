@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const ScoreSchema = new Schema({
     score: {type: Number, required: true},
-    distance:  {type: Number, required: true},
+    distance:  {type: Schema.Types.Mixed, required: true},
+    miles: {type: Schema.Types.Mixed, required: true},
     date: {type: Date, default: Date.now, required: true}
   });
   
@@ -12,7 +13,7 @@ const ScoreSchema = new Schema({
   const PersonSchema = new Schema({
     username: { type: String, required: true, index: { unique: true } },
     password: { type: String, required: true },
-    Scores: [{ type: mongoose.Schema.ObjectId, ref: 'ScoreData'}]
+    Scores: [ScoreSchema]
   });
 
   module.exports = {

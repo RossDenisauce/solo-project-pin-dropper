@@ -1,7 +1,19 @@
 <header ng-include="'../views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-  <p>
-    In Info
-  </p>
+  <h2 id="username">{{vm.data.username}}'s Data</h2>
+  <table class="infoTable">
+    <tr>
+      <th>Scores</th>
+      <th>Distance (km)</th>
+      <th>Distance (mi)</th>
+      <th>Date Played</th>
+    </tr>
+    <tr ng-repeat="data in vm.data.Scores">
+      <td>{{data.score}}</td>
+      <td>{{data.distance}}</td>
+      <td>{{data.miles}}</td>
+      <td>{{data.date | date:'yyyy-MM-dd' }}</td>
+    </tr>
+</table>
 </div>
