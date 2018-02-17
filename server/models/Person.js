@@ -6,7 +6,7 @@ const ScoreSchema = new Schema({
     score: {type: Number, required: true},
     distance:  {type: Schema.Types.Mixed, required: true},
     miles: {type: Schema.Types.Mixed, required: true},
-    date: {type: Date, default: Date.now, required: true}
+    date: {type: Date, default: Date.now, required: true},
   });
   
   

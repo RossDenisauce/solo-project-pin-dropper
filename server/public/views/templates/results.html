@@ -7,16 +7,21 @@
         <button id="homeButton" ng-click="vm.goHome()">Home</button>
         <button id="playAnotherButton" ng-click="vm.playAnother()">Play Another</button>
     </div>
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content"> 
-    <span class="close">&times;</span>
-    <header class="modal-header">
-        <h2>Heyyo</h2>
-    </header>
-    <p>Distance away: {{vm.distance}}</p> 
-    <p>Score out of 5000: {{vm.score}}</p>
-  </div>
-</div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <header class="modal-header">
+                <h2>Heyyo</h2>
+            </header>
+            <div ng-if="vm.didGuess">
+                <p>Distance away: {{vm.distance}}km {{vm.miles}}mi</p>
+                <p class="lastElement">Score out of 5000: {{vm.score}}</p>
+            </div>
+            <div ng-if="vm.didGuess == false">
+                <p class="lastElement">Did not make a guess :(</p>
+            </div>
+        </div>
+    </div>
 </div>

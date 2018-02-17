@@ -23,8 +23,6 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
             zoom: 1,
             streetViewControl: false
           });
-
-        //   self.marker = new google.maps.Marker({position: {lat:0, lng:0}, map: self.map, draggable: true, opacity: 0.75});
     
           self.sv.getPanorama({location: self.newLocation, preference: 'nearest', source: 'outdoor', radius: 1000000}, self.processSVData);
     }
@@ -51,7 +49,7 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
         console.error('Street View data not found for this location.');
         self.createLocation();
         self.initMap();
-    }
+        }
     }
 
     self.submitGuess = function(){
@@ -67,6 +65,7 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
             console.log('answer:', self.newLocation);
             self.distance = self.getDistance(self.guessPosition, self.newLocation);
             console.log(self.distance);
+            self.didGuess = true;
     } else {
         self.guessPosition = { 
             lat: 0,
@@ -74,6 +73,7 @@ myApp.service('GameService', ['$http', '$location', function($http, $location) {
         }
         self.distance = -1;
         self.score = 0;
+        self.didGuess = false;
     }
         $location.path('/results');
     }

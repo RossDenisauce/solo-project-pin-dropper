@@ -14,23 +14,20 @@ myApp.controller('GameController', ['$http', '$location', 'GameService', functio
         // Opens the modal 
         self.modal.style.display = "block";
 
-        // When the user clicks on <span> (x), close the modal
+        // When the user clicks on <span>, close the modal
         self.span.onclick = function() {
             self.modal.style.display = "none";
         }
    
 }
 
-    
-    
     self.submitGuess = function(){
         GameService.submitGuess();
     }
+
     delete GameService.marker;
     GameService.initMap();
 
     self.initModal();
     
-
-
 }]);
