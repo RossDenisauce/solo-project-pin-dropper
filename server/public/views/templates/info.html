@@ -1,19 +1,33 @@
 <header ng-include="'../views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-  <h2 id="username">{{vm.data.username}}'s Data</h2>
+  <h2 id="username">{{vm.userService.userObject.userName}}'s Data</h2>
   <table class="infoTable">
     <tr>
+      <th>Game</th>
       <th>Scores</th>
       <th>Distance (km)</th>
       <th>Distance (mi)</th>
       <th>Date Played</th>
+      <th>Play Again</th>
     </tr>
-    <tr ng-repeat="data in vm.data.Scores">
-      <td>{{data.score}}</td>
-      <td>{{data.distance}}</td>
-      <td>{{data.miles}}</td>
-      <td>{{data.date | date:'yyyy-MM-dd' }}</td>
+    <tr ng-repeat="games in vm.data">
+      <td>{{$index + 1}}</td>
+      <td>
+        <p ng-repeat="scores in games.scores | orderBy:'-score'">{{scores.score}}</p>
+      </td>
+      <td>
+        <p ng-repeat="scores in games.scores">{{scores.distance}}</p>
+      </td>
+      <td>
+        <p ng-repeat="scores in games.scores">{{scores.miles}}</p>
+      </td>
+      <td>
+        <p ng-repeat="scores in games.scores">{{scores.date | date:'yyyy-MM-dd' }}</p>
+      </td>
+      <td>
+        <button ng-click="vm.tryAnother(games.lat, games.lng, games._id)">Try Again</button>
+      </td>
     </tr>
   </table>
 </div>
