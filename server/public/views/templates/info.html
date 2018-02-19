@@ -11,10 +11,10 @@
       <th>Date Played</th>
       <th>Play Again</th>
     </tr>
-    <tr ng-repeat="games in vm.data">
+    <tr ng-repeat="games in vm.data.games">
       <td>{{$index + 1}}</td>
       <td>
-        <p ng-repeat="scores in games.scores | orderBy:'-score'">{{scores.score}}</p>
+        <p ng-repeat="scores in games.scores">{{scores.score}}</p>
       </td>
       <td>
         <p ng-repeat="scores in games.scores">{{scores.distance}}</p>

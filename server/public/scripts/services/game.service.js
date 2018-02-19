@@ -4,6 +4,7 @@ myApp.service('GameService', ['$http', '$location', 'UserService', function ($ht
 
     self.panorama;
     self.score;
+    self.roundRepeat = false;
 
     self.tryAnother = function (lat, lng, id) {
         self.roundRepeat = true;
