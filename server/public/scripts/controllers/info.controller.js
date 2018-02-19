@@ -1,27 +1,52 @@
-myApp.controller('InfoController', ['UserService', 'GameService', '$http', function (UserService, GameService, $http) {
+myApp.controller('InfoController', ['UserService', 'GameService', '$http', '$location', function (UserService, GameService, $http, $location) {
   console.log('InfoController created');
   var self = this;
   self.userService = UserService;
   // self.userService.userObject.username
 
-  self.data = {};
+  // self.getTableData = function () {
+  //   $http.get(`/api/easy-mode/${UserService.userObject.id}`)
+  //     .then(function (response) {
+  //       console.log('successful get', response.data[0]);
+  //       self.data = response.data[0];
+  //     })
+  //     .catch(function (error) {
+  //       console.error('error on get info', error);
+  //     })
+  // }
 
-  self.getTableData = function () {
-    $http.get(`/api/easy-mode/${UserService.userObject.id}`)
-      .then(function (response) {
-        console.log('successful get', response.data[0]);
-        self.data = response.data[0];
-        // for (let i = 0; i < self.data.Scores.length; i++) {
-        //   if (self.data.Scores[i].distance === -1) {
-        //     self.data.Scores[i].distance = 'Did not place a marker';
-        //     self.data.Scores[i].miles = 'Did not place a marker';
-        //   }
-        // }
+  // self.getTableData();
+
+  self.getGameInfo = function () {
+    $http.get(`/api/easy-mode/game-data/${UserService.userObject.id}`)
+      .then((response) => {
+        console.log('game get request success', response);
       })
-      .catch(function (error) {
-        console.error('error on get info', error);
+      .catch((error) => {
+        console.log('Error on get request', error);
       })
   }
 
-  self.getTableData();
+  self.getScoreInfo = function () {
+    $http.get(`/api/easy-mode/score-data/${UserService.userObject.id}`)
+      .then((response) => {
+        console.log('game get request success', response);
+        self.data = response.data;
+      })
+      .catch((error) => {
+        console.log('Error on get request', error);
+
+      })
+  }
+
+  self.tryAnother = function(lat, lng, id){
+    GameService.tryAnother(lat, lng, id);
+    $location.path('/easy-mode');
+  }
+
+  self.getGameInfo();
+  self.getScoreInfo();
+  // GameService.getGameInfo();
+  // self.data = GameService.data;
+
 }]);

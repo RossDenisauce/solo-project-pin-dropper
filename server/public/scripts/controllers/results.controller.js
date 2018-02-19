@@ -63,15 +63,27 @@ myApp.controller('ResultsController', ['$http', '$location', 'GameService', 'Use
         $location.path('/easy-mode');
     }
 
+    self.getGameInfo = function () {
+        $http.get(`/api/easy-mode/game-data/${UserService.userObject.id}`)
+            .then((response) => {
+                console.log('game get request success', response);
+                self.data = response.data[0];
+            })
+            .catch((error) => {
+                console.log('Error on get request', error);
+
+            })
+    }
+
     self.postResults = function (distance, score) {
 
-        scoreObject = {
+        var scoreObject = {
             distance: distance,
             miles: self.miles,
             score: score
-        };
+        };        
 
-        $http.post(`/api/easy-mode/${UserService.userObject.id}`, scoreObject)
+        $http.post(`/api/easy-mode/results/${GameService.gameId}`, scoreObject)
             .then(function (response) {
                 console.log('Successful post', response);
             })
