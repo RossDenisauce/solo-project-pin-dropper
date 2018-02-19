@@ -27,7 +27,4 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
     });
   }
 
-  self.easyMode = function(){
-    $location.path("/easy-mode");
-  }
 }]);

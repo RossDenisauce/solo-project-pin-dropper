@@ -292,3 +292,14 @@ div.loginButtons {
   background-color: #c0730e;
   border-color: #c0730e;
 }
+
+#timer {
+  position: fixed !important;
+  z-index: 1000000 !important;
+  bottom: 25px;
+  margin-left: 50%;
+  align-content: center;
+  background-color: #0c7c0c;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+}

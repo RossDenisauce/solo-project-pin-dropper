@@ -1,4 +1,4 @@
-myApp.service('GameService', ['$http', '$location', 'UserService', function ($http, $location, UserService) {
+myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', function ($http, $location, UserService, $timeout) {
     console.log('GameService created');
     var self = this;
 
@@ -10,6 +10,18 @@ myApp.service('GameService', ['$http', '$location', 'UserService', function ($ht
         self.roundRepeat = true;
         self.newLocation = { lat: lat, lng: lng };
         self.gameId = id;
+    }
+
+    self.easyMode = function () {
+        self.gameMode = 'Easy';
+    }
+
+    self.timedMode = function () {
+        self.gameMode = 'Timed';
+    }
+
+    self.initTimedMode = function () {
+        $timeout(self.submitGuess, 240000); // 4 minute timer
     }
 
     self.initMap = function () {
@@ -102,6 +114,9 @@ myApp.service('GameService', ['$http', '$location', 'UserService', function ($ht
                 });
         } else {
             console.log('Skipped post');
+        }
+        if (self.gameMode == 'Timed') {
+            $timeout.cancel(self.submitGuess);
         }
         self.roundRepeat = false;
         $location.path('/results');
