@@ -73,4 +73,20 @@ router.post('/results/:id', (req, res) => {
     }
 });
 
+router.delete('/:id', (req, res) => {
+    if(req.isAuthenticated()){
+        GameData.findByIdAndRemove({"_id": req.params.id}, (error, docDeleted) => {
+            if (error) {
+                console.log('error on delete:', error);
+                res.sendStatus(500);
+            } else {
+                console.log('Deleted Document:', docDeleted);
+                res.sendStatus(200);
+            }
+        });
+    } else {
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;

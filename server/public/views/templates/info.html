@@ -5,14 +5,17 @@
   <table class="infoTable">
     <tr>
       <th>Game</th>
+      <th>Game Mode</th>
       <th>Scores</th>
       <th>Distance (km)</th>
       <th>Distance (mi)</th>
       <th>Date Played</th>
       <th>Play Again</th>
+      <th>Remove Game Data</th>
     </tr>
     <tr ng-repeat="games in vm.data.games">
       <td>{{$index + 1}}</td>
+      <td>{{games.gameMode}}</td>
       <td>
         <p ng-repeat="scores in games.scores">{{scores.score}}</p>
       </td>
@@ -26,7 +29,10 @@
         <p ng-repeat="scores in games.scores">{{scores.date | date:'yyyy-MM-dd' }}</p>
       </td>
       <td>
-        <button ng-click="vm.tryAnother(games.lat, games.lng, games._id, games.gameMode)">Try Again</button>
+        <i id="tryAnother" class="material-icons" ng-click="vm.tryAnother(games.lat, games.lng, games._id, games.gameMode, games.panoId)">repeat</i>
+      </td>
+      <td>
+        <i id="deleteGameData" class="material-icons" ng-click="vm.deleteGameData(games._id)">delete_forever</i>
       </td>
     </tr>
   </table>

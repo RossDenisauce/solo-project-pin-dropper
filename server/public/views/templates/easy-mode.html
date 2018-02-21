@@ -1,9 +1,13 @@
+<div id="timerContainer">
+    <p id="gameTitle">Pin Dropper</p>
+    <p id="timer" ng-if="vm.gameMode == 'Timed'">{{vm.time | secondsToDateTime | date:'mm:ss'}}</p>
+</div>
 <div class="container">
     <div id="pano"></div>
     <div id="map"></div>
 </div>
+
 <div>
-    <p id="timer">{{vm.time | secondsToDateTime | date:'HH:mm:ss'}}</p>
     <button id="submit" ng-click="vm.submitGuess()">Submit Guess</button>
 </div>
 

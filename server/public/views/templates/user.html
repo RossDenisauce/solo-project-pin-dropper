@@ -2,6 +2,8 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="userViewContainer">
     <h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}!</h1>
-    <button class="easyModeButton" ng-click="vm.easyMode()">Base Mode</button>
-    <button class="timedModeButton" ng-click="vm.timedMode()">Timed Mode</button>
+    <div class="gameModeButtons">
+        <button class="easyModeButton" ng-click="vm.easyMode()">Base Mode</button>
+        <button class="timedModeButton" ng-click="vm.timedMode()">Timed Mode</button>
+    </div>
 </div>

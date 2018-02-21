@@ -6,11 +6,12 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
     self.score;
     self.roundRepeat = false;
 
-    self.tryAnother = function (lat, lng, id, gameMode) {
+    self.tryAnother = function (lat, lng, id, gameMode, panoId) {
         self.roundRepeat = true;
         self.newLocation = { lat: lat, lng: lng };
         self.gameId = id;
         self.gameMode = gameMode;
+        self.panoId = panoId;
     }
 
     self.easyMode = function () {
@@ -39,10 +40,13 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
         // Set the initial Street View camera to the center of the map
 
         self.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 75, lng: 0 },
+            center: { lat: 85, lng: 0 },
             zoom: 1,
             streetViewControl: false
         });
+
+        self.map.setOptions({ draggableCursor: 'crosshair' }); // Makes the guess map's cursor a "crosshair" instead of the default hand
+
         if (self.roundRepeat == true) {
             self.sv.getPanorama({ location: self.newLocation, preference: 'nearest', source: 'outdoor' }, self.processSVData);
         } else {
@@ -63,15 +67,18 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
 
     self.processSVData = function (data, status) {
         if (status === 'OK') {
-
-            self.panorama.setPano(data.location.pano);
+            if (self.roundRepeat == true) {
+                self.panorama.setPano(self.panoId);
+            } else {
+                self.panorama.setPano(data.location.pano);
+                self.panoId = self.panorama.getPano();
+            }
             self.panorama.setPov({
                 heading: 0,
                 pitch: 0
             });
             self.panorama.setVisible(true);
             self.map.addListener('click', self.addLatLng); //Adds click event to guess map
-            
         } else { // tries finding a new lat and lng
             console.log('Street View data not found for this location.');
             self.createLocation();
@@ -85,7 +92,6 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
         }
         self.newLocation.lat = self.panorama.getPosition().lat();
         self.newLocation.lng = self.panorama.getPosition().lng();
-        
         if (self.marker) {
             self.guessPosition = {
                 lat: self.marker.getPosition().lat(),
@@ -94,7 +100,6 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
             console.log('guess:', self.guessPosition);
             console.log('answer:', self.newLocation);
             self.distance = self.getDistance(self.guessPosition, self.newLocation);
-            console.log(self.distance);
             self.didGuess = true;
         } else {
             self.guessPosition = {
@@ -109,7 +114,8 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
         var gamePosition = {
             lat: self.newLocation.lat,
             lng: self.newLocation.lng,
-            gameMode: self.gameMode
+            gameMode: self.gameMode,
+            panoId: self.panoId
         };
         if (self.roundRepeat == false) {
             $http.post(`/api/easy-mode/${UserService.userObject.id}`, gamePosition)

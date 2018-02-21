@@ -1,8 +1,8 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
   height: 100%;
   width: 100%;
   background-image: url("../images/modis_wonderglobe_lrg.jpg");
@@ -92,7 +92,8 @@ li a:hover {
 }
 
 #pano {
-  height: 50%;
+  top: 25px;
+  height: 60%;
   width: 100%;
   position: absolute !important;
 }
@@ -100,9 +101,13 @@ li a:hover {
   /* top: 350px;
   left: 250px;
   z-index: 99; */
-  height: 50%;
+  height: 40%;
   width: 100%;
   position: static !important;
+}
+
+#map {
+  cursor: crosshair !important;
 }
 
 #map #pano {
@@ -120,6 +125,7 @@ button#submit {
   align-content: center;
   padding: 10px 15px;
   background-color: #0c7c0c;
+  border-color: #0c7c0c;
   color: #FFFFFF;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   font-size: 15px;
@@ -132,13 +138,6 @@ button#submit:hover {
   background-color: #0c7c0c;
   opacity: 1;
 }
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative !important;
-} */
 
 #resultMap {
   height: 75%;
@@ -248,6 +247,7 @@ div.loginButtons {
   font-size: 25px;
   border-radius: 10px;
   border-color: #e7890f;
+  margin: 10px;
 }
 .easyModeButton:hover {
   cursor: pointer;
@@ -294,12 +294,63 @@ div.loginButtons {
 }
 
 #timer {
-  position: fixed !important;
   z-index: 1000000 !important;
-  bottom: 25px;
-  margin-left: 50%;
-  align-content: center;
-  background-color: #0c7c0c;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  margin-top: 0px;
+  /* justify-content: flex-end; */
+}
+
+#timerContainer {
+  display: flex;
+  width: 100%;
+  height: 25px;
+  background-color: #353535;
+  z-index: 100000 !important;
+  position: fixed !important;
+  justify-content: space-between;
+}
+
+#gameTitle {
+  z-index: 1000000 !important;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.timedModeButton {
+  padding: 7px 10px;
+  background-color: #b81212;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   font-size: 25px;
+  border-radius: 10px;
+  border-color: #b81212;
+  margin: 10px;
+}
+
+.timedModeButton:hover {
+  cursor: pointer;
+  background-color: #991a1a;
+  border-color: #991a1a;
+}
+
+.gameModeButtons {
+  bottom: 45px;
+}
+
+#deleteGameData:hover {
+  cursor: pointer;
+}
+
+#tryAnother:hover {
+  cursor: pointer;
+}
+
+#deleteGameData {
+  font-size: 30px;
+}
+
+#tryAnother {
+  font-size: 30px;
 }

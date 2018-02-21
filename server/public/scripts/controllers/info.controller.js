@@ -14,9 +14,20 @@ myApp.controller('InfoController', ['UserService', 'GameService', '$http', '$loc
       })
   }
 
-  self.tryAnother = function(lat, lng, id, gameMode){
-    GameService.tryAnother(lat, lng, id, gameMode);
+  self.tryAnother = function (lat, lng, id, gameMode, panoId) {
+    GameService.tryAnother(lat, lng, id, gameMode, panoId);
     $location.path('/easy-mode');
+  }
+
+  self.deleteGameData = function (gameId) {
+    $http.delete(`/api/easy-mode/${gameId}`)
+      .then((response) => {
+        console.log('Delete game request', response);
+        self.getGameInfo();
+      })
+      .catch((error) => {
+        console.log('Delete game request failure', error);
+      })
   }
 
   self.getGameInfo();
