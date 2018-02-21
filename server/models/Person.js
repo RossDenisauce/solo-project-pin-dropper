@@ -19,6 +19,7 @@ const PersonSchema = new Schema({
 const GameSchema = new Schema({
   lat: {type: Number},
   lng: {type: Number},
+  gameMode: String,
   scores: [{ type: mongoose.Schema.ObjectId, ref: 'ScoreData' }]
 })
 

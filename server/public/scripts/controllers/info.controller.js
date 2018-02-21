@@ -14,8 +14,8 @@ myApp.controller('InfoController', ['UserService', 'GameService', '$http', '$loc
       })
   }
 
-  self.tryAnother = function(lat, lng, id){
-    GameService.tryAnother(lat, lng, id);
+  self.tryAnother = function(lat, lng, id, gameMode){
+    GameService.tryAnother(lat, lng, id, gameMode);
     $location.path('/easy-mode');
   }
 

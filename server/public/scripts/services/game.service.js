@@ -6,10 +6,11 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
     self.score;
     self.roundRepeat = false;
 
-    self.tryAnother = function (lat, lng, id) {
+    self.tryAnother = function (lat, lng, id, gameMode) {
         self.roundRepeat = true;
         self.newLocation = { lat: lat, lng: lng };
         self.gameId = id;
+        self.gameMode = gameMode;
     }
 
     self.easyMode = function () {
@@ -21,7 +22,7 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
     }
 
     self.initTimedMode = function () {
-        $timeout(self.submitGuess, 240000); // 4 minute timer
+        self.timer = $timeout(self.submitGuess, 240000); // 4 minute timer
     }
 
     self.initMap = function () {
@@ -42,8 +43,11 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
             zoom: 1,
             streetViewControl: false
         });
-
-        self.sv.getPanorama({ location: self.newLocation, preference: 'nearest', source: 'outdoor', radius: 1000000 }, self.processSVData);
+        if (self.roundRepeat == true) {
+            self.sv.getPanorama({ location: self.newLocation, preference: 'nearest', source: 'outdoor' }, self.processSVData);
+        } else {
+            self.sv.getPanorama({ location: self.newLocation, preference: 'nearest', source: 'outdoor', radius: 1000000 }, self.processSVData);
+        }
     }
     self.createLocation = function () {
         if (self.roundRepeat == true) {
@@ -67,18 +71,21 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
             });
             self.panorama.setVisible(true);
             self.map.addListener('click', self.addLatLng); //Adds click event to guess map
-
+            
         } else { // tries finding a new lat and lng
-            console.error('Street View data not found for this location.');
+            console.log('Street View data not found for this location.');
             self.createLocation();
             self.initMap();
         }
     }
 
     self.submitGuess = function () {
+        if (self.gameMode == 'Timed') {
+            $timeout.cancel(self.timer);
+        }
         self.newLocation.lat = self.panorama.getPosition().lat();
         self.newLocation.lng = self.panorama.getPosition().lng();
-
+        
         if (self.marker) {
             self.guessPosition = {
                 lat: self.marker.getPosition().lat(),
@@ -101,7 +108,8 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
 
         var gamePosition = {
             lat: self.newLocation.lat,
-            lng: self.newLocation.lng
+            lng: self.newLocation.lng,
+            gameMode: self.gameMode
         };
         if (self.roundRepeat == false) {
             $http.post(`/api/easy-mode/${UserService.userObject.id}`, gamePosition)
@@ -115,9 +123,7 @@ myApp.service('GameService', ['$http', '$location', 'UserService', '$timeout', f
         } else {
             console.log('Skipped post');
         }
-        if (self.gameMode == 'Timed') {
-            $timeout.cancel(self.submitGuess);
-        }
+
         self.roundRepeat = false;
         $location.path('/results');
     }

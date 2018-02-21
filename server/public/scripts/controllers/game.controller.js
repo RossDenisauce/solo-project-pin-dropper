@@ -25,8 +25,9 @@ myApp.controller('GameController', ['$http', '$location', 'GameService', '$timeo
         }
 }
 
+// Timer which goes down 1 every second
 self.timer = function() {
-    if( self.time > 0 ) {
+    if( self.time >= 0 ) {
         self.time -= 1;
         $timeout(self.timer, 1000);
     }
@@ -41,5 +42,11 @@ self.timer = function() {
     GameService.initMap();
 
     self.initModal();
-    
 }]);
+
+// Allows seconds to be displayed in Date format --- "HH:mm:ss"
+myApp.filter('secondsToDateTime', function(){
+    return function(seconds) {
+        return new Date(0, 0, 0).setSeconds(seconds);
+    };
+});

@@ -3,7 +3,7 @@
     <div id="map"></div>
 </div>
 <div>
-    <p id="timer">{{vm.time}}</p>
+    <p id="timer">{{vm.time | secondsToDateTime | date:'HH:mm:ss'}}</p>
     <button id="submit" ng-click="vm.submitGuess()">Submit Guess</button>
 </div>
 
