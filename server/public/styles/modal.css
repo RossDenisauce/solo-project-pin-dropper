@@ -94,3 +94,14 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.modalScore{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+.modalScore > p {
+    text-shadow: 2px 2px black;
+}

@@ -1,25 +1,28 @@
-<div>
-    <div id="distance">
-        {{vm.distance}} {{vm.score}}
+<div id="results">
+    <div class="resultContainer">
+        <div id="distance">
+           <p ng-if="vm.didGuess"> Distance: {{vm.distance}}km </p>
+           <p> Score: {{vm.score}} </p>
+        </div>
+        <div class="easyModeContainer">
+            <button id="homeButton" ng-click="vm.goHome()">Home</button>
+            <button id="playAnotherButton" ng-click="vm.playAnother()">Play Another</button>
+        </div>
     </div>
     <div id="resultMap"></div>
-    <div class="easyModeContainer">
-        <button id="homeButton" ng-click="vm.goHome()">Home</button>
-        <button id="playAnotherButton" ng-click="vm.playAnother()">Play Another</button>
-    </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <header class="modal-header">
-                <h2>Heyyo</h2>
+                <h2>Results:</h2>
             </header>
-            <div ng-if="vm.didGuess">
+            <div ng-if="vm.didGuess" class="modalScore">
                 <p>Distance away: {{vm.distance}}km {{vm.miles}}mi</p>
-                <p class="lastElement">Score out of 5000: {{vm.score}}</p>
+                <p class="lastElement">Score: {{vm.score}}/5000</p>
             </div>
-            <div ng-if="vm.didGuess == false">
+            <div ng-if="vm.didGuess == false" class="modalScore">
                 <p class="lastElement">Did not make a guess :(</p>
             </div>
         </div>
