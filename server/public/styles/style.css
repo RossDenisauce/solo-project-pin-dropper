@@ -159,6 +159,7 @@ button#submit:hover {
   color: white;
   padding: 6px;
   text-align: center;
+  text-shadow: 2px 2px black;
 }
 
 .infoTable > tbody > tr > th{
