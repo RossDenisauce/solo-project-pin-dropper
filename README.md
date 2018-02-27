@@ -13,7 +13,7 @@ Pin Dropper is a web game where you are given a randomly generated Google Map Pa
 
 ## Getting Started
 
-Download the zip of the repo and `npm install`, also run mongoDB with the comand `mongod`
+Download the zip of the repo and `npm install`, run mongoDB with the comand `mongod`, the port is `7845`
 
 ### Prerequisites
 
