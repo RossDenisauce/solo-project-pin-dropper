@@ -1,57 +1,48 @@
-# Name of Project
+# Pin Dropper
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+Pin Dropper is a web game where you are given a randomly generated Google Map Panorama view and you try to find out where you are in the world. You use clues based on the environment, the language, or anything you can to figure out where you are. Once you know where you are, or think you know where you are, you place a pin on a map of the world on the desired location and hit submit. You are taken to a page with your results which include your score for the game and the distance you were away.
 
 ## Built With
 
-List technologies and frameworks here
+ - Javascript
+ - Node.js
+ - Express.js
+ - AngularJS
+ - MongoDB
+ - Google Maps API
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Download the zip of the repo and `npm install`, also run mongoDB with the comand `mongod`
 
 ### Prerequisites
 
-Link to software that is required to install the app (e.g. node).
-
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
-
-
-### Installing
-
-Steps to get the development environment running.
-
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
-
-## Documentation
-
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
+- [MongoDB](https://www.mongodb.com/)
 
 ### Completed Features
 
-High level list of items completed.
-
-- [x] Feature a
-- [x] Feature b
+- [x] Randomly generate google map panorama views
+- [x] Allow guesses
+- [x] Give scores and distances away & store them in a database
+- [x] Users must make an account to play
+- [x] Users can view past games and replay or delete them if they choose
+- [x] Timed mode is set to a static 4 minutes
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
-
-- [ ] Feature c
+- [ ] Challenege other users to games
+- [ ] Add Adjustable timer for timed mode
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Have to activate MLab for deployment on heroku
 
 ## Authors
 
-* Name of author(s)
-
+* Ross Denison
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Huge shout out to [Geoguessr](https://geoguessr.com/) which was the inspiration for this game
+* Google Maps API documentation was used heavily
