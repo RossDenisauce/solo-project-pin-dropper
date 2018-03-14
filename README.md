@@ -37,13 +37,13 @@ Download the zip of the repo and `npm install`, run mongoDB with the comand `mon
 ## Screenshots
 
 ### Home Page
-! [alt text](Home-page.png)
+! [alt text](https://github.com/RossDenisauce/solo-project-pin-dropper/server/public/images/Home-page.png)
 ### The start of a game
-! [alt text](Start-game.png)
+! [alt text](https://github.com/RossDenisauce/solo-project-pin-dropper/server/public/images/Start-game.png)
 ### Results Page
-! [alt text](Result-page.png)
+! [alt text](https://github.com/RossDenisauce/solo-project-pin-dropper/server/public/images/Result-page.png)
 ### User Data
-! [alt text](User-data.png)
+! [alt text](https://github.com/RossDenisauce/solo-project-pin-dropper/server/public/images/User-data.png)
 
 ## Deployment
 
