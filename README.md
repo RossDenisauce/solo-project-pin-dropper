@@ -37,13 +37,13 @@ Download the zip of the repo and `npm install`, run mongoDB with the comand `mon
 ## Screenshots
 
 ### Home Page
-! [alt text](server/public/images/Home-page.png)
+! [alt text](Home-page.png)
 ### The start of a game
-! [alt text](server/public/images/Start-game.png)
+! [alt text](Start-game.png)
 ### Results Page
-! [alt text](server/public/images/Result-page.png)
+! [alt text](Result-page.png)
 ### User Data
-! [alt text](server/public/images/User-data.png)
+! [alt text](User-data.png)
 
 ## Deployment
 
