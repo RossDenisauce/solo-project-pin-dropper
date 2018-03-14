@@ -47,7 +47,7 @@ Download the zip of the repo and `npm install`, run mongoDB with the comand `mon
 
 ## Deployment
 
-Have to activate MLab for deployment on heroku
+[Deployed to Heroku](https://pin-dropper.herokuapp.com/)
 
 ## Authors
 
