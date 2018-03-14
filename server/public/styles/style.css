@@ -185,12 +185,11 @@ button#submit:hover {
 
 .loginForm {
     border: 2px solid rgb(107, 107, 107);
-    /* border-radius: 100%; */
     background-color: #353535bd;
-    padding-top: 25px;
-    height: 175px;
-    width: 325px;
-    padding-bottom: 45px;
+    min-height: 175px;
+    min-width: 325px;
+    overflow: auto;
+    padding: 25px 15px 45px 15px;
 }
 
 main{
